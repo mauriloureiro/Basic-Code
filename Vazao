@@ -24,36 +24,11 @@ void loop() {
     switch (Serial.read()) {
       case 'A':
         Serial.println("Iniciando 300ml...");
-        digitalWrite(13, HIGH);
-        delay(10);
-        digitalWrite(13, LOW);
-        delay(10);
-        digitalWrite(13, HIGH);
-        do {
-          contaPulso = 0;
-          sei();
-          delay (1000);
-          cli();
-          vazao = contaPulso / 5.5;
-          volume = (vazao / 60) * 1000;
-          garrafa = volume + garrafa;
-          t++;
-          Serial.print(garrafa);
-          Serial.print(" ml - ");
-          Serial.print(vazao);
-          Serial.print(" l/min - ");
-          Serial.print(t);
-          Serial.println("s");
-          analogWrite(ledA, map(garrafa, 0, 300, 0, 255));
-        } while (garrafa <= 300);
-        digitalWrite(13, LOW);
-        delay(1000);
-        Serial.print("Garrafa preenchida com ");
-        Serial.print(garrafa);
-        Serial.println(" ml");
-        delay(10);
-        garrafa = 0;
-        t = 0;
+        for (int fadeValue = 0 ; fadeValue <= 255; fadeValue += 1) {
+          analogWrite(ledA, fadeValue);
+          delay(30);
+        }
+        Serial.println("Garrafa Cheia!");
         delay(3000);
         analogWrite(ledA, 0);
         Serial.println();
