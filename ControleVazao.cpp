@@ -1,9 +1,3 @@
-float vazao;
-int volume = 0;
-int garrafa = 0;
-int tamanho = 600;
-int contaPulso;
-int t = 0;
 int ledA = 10;
 int ledB = 11;
 
@@ -13,7 +7,6 @@ void setup() {
   pinMode(13, OUTPUT);
   pinMode(10, OUTPUT);
   pinMode(11, OUTPUT);
-  attachInterrupt(0, incpulso, RISING);
   Serial.println("Escolha o tamanho:");
   Serial.println("A - 300ml");
   Serial.println("B - 600ml");
@@ -52,9 +45,4 @@ void loop() {
         break;
     }
   }
-}
-
-void incpulso ()
-{
-  contaPulso++; // Incrementa a variável de contagem dos pulsos
 }
